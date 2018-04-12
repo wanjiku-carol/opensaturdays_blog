@@ -1,13 +1,13 @@
 from flask import Blueprint
-from flask_restful import Api
-from resources.hello import Hello
-from resources.category import CategoryResource
-from resources.comment import CommentResource
+from flask_restful import Api, Resource
+
+
+class Hello(Resource):
+    def get(self):
+        return {"message": "Hello World!"}
+
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
 api.add_resource(Hello, '/')
-api.add_resource(CategoryResource, '/category', '/category/',
-                 '/category/<string:id>', '/category/<string:id>/')
-api.add_resource(CommentResource, '/comment')
