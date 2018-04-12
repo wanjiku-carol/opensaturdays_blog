@@ -1,15 +1,18 @@
 from flask import Flask
+from flask_restful import Api
+from app import Hello
 
 
 def create_app(config_filename):
     app = Flask(__name__)
     app.config.from_object(config_filename)
 
-    from app import api_bp
-    app.register_blueprint(api_bp, url_prefix='/api')
+    api = Api(app)
 
     from models import db
     db.init_app(app)
+
+    api.add_resource(Hello, '/')
 
     return app
 

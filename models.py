@@ -8,7 +8,7 @@ class Item(db.Model):
     __tablename__ = 'items'
     id = db.Column(db.Integer, primary_key=True)
     item = db.Column(db.String(250), nullable=False)
-    creation_date = db.Column(
+    date_created = db.Column(
         db.TIMESTAMP, server_default=db.func.current_timestamp(),
         nullable=False)
     todo_id = db.Column(db.Integer, db.ForeignKey(
@@ -20,15 +20,28 @@ class Item(db.Model):
         self.item = item
         self.todo_id = todo_id
 
+    def json_dump(self):
+        return dict(
+            id=self.id,
+            item=self.item,
+            date_created=self.date_created,
+            todo_id=self.todo_id)
+
 
 class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), unique=True, nullable=False)
+    date_created = db.Column(
+        db.TIMESTAMP, server_default=db.func.current_timestamp(),
+        nullable=False)
 
     def __init__(self, name):
         """ Initialize with name of todo """
         self.name = name
+
+    def json_dump(self):
+        return dict(id=self.id, name=self.name, date_created=self.date_created)
 
     def save(self):
         db.session.add(self)
