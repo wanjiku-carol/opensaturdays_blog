@@ -17,7 +17,7 @@ class ItemResource(Resource):
     def post(self, todo_id):
         json_data = request.get_json()
         item = Item.query.filter_by(todo_id=todo_id).first()
-        item = Item(item=json_data['item'], todo_id=json_data['todo_id'])
+        item = Item(item=json_data['item'], todo_id=todo_id)
         item.save()
         response = json.loads(json.dumps(item.json_dump()))
         return {"status": "success", "data": response}, 201

@@ -15,9 +15,9 @@ def create_app(config_filename):
     db.init_app(app)
 
     api.add_resource(Hello, '/')
-    api.add_resource(TodoResource, '/todo', '/todo/', '/todo/<string:id>',
-                     '/todo/<string:id>/')
-    api.add_resource(ItemResource, '/todo/<string:todo_id>/item')
+    api.add_resource(TodoResource, '/todo', '/todo/', '/todo/<int:id>',
+                     '/todo/<int:id>/')
+    api.add_resource(ItemResource, '/todo/<int:todo_id>/item')
 
     return app
 
