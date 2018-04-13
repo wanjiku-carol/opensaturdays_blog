@@ -18,7 +18,7 @@ class TodoResource(Resource):
         todo = Todo(name=json_data['name'])
         todo.save()
         response = json.loads(json.dumps(todo.json_dump()))
-        return {"status": "success", "data": response}, 200
+        return {"status": "success", "data": response}, 201
 
     def put(self, id):
         json_data = request.get_json(force=True)

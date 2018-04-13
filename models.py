@@ -21,10 +21,13 @@ class Item(db.Model):
 
     def json_dump(self):
         return dict(
-            id=self.id,
             item=self.item,
-            date_created=self.date_created,
+            date_created=str(self.date_created),
             todo_id=self.todo_id)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
 
 class Todo(db.Model):
@@ -41,7 +44,6 @@ class Todo(db.Model):
 
     def json_dump(self):
         return dict(
-            id=self.id,
             name=self.name,
             date_created=str(self.date_created)
         )
@@ -49,8 +51,3 @@ class Todo(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
-
-    @staticmethod
-    def get_all(todo_id):
-        """Return all items belonging to a todo."""
-        return Item.query.filter_by(belongs_to=todo_id)
