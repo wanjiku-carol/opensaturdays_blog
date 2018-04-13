@@ -1,4 +1,3 @@
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -41,7 +40,11 @@ class Todo(db.Model):
         self.name = name
 
     def json_dump(self):
-        return dict(id=self.id, name=self.name, date_created=self.date_created)
+        return dict(
+            id=self.id,
+            name=self.name,
+            date_created=str(self.date_created)
+        )
 
     def save(self):
         db.session.add(self)

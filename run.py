@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from app import Hello
+from resources.todo import TodoResource
 
 
 def create_app(config_filename):
@@ -13,6 +14,8 @@ def create_app(config_filename):
     db.init_app(app)
 
     api.add_resource(Hello, '/')
+    api.add_resource(TodoResource, '/todo', '/todo/', '/todo/<string:id>',
+                     '/todo/<string:id>/')
 
     return app
 
