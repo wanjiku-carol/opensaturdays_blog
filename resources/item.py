@@ -21,3 +21,12 @@ class ItemResource(Resource):
         item.save()
         response = json.loads(json.dumps(item.json_dump()))
         return {"status": "success", "data": response}, 201
+
+    """ Update an item """
+    def put(self, id, todo_id):
+        json_data = request.get_json()
+        item = Item.query.filter_by(id=id).first()
+        item = Item(item=json_data['item'], todo_id=todo_id)
+        item.save()
+        response = json.loads(json.dumps(item.json_dump()))
+        return {"status": "success", "data": response}, 200
