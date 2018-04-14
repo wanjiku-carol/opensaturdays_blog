@@ -30,7 +30,7 @@ Create a virtualenv and activate it. [Refer here](https://docs.python.org/3/tuto
 > $ createdb todos
 
 - Run migrations:
-> $ python manage.py upgrade
+> $ python manage.py db upgrade
 
 After setting up the above. Run:
 
