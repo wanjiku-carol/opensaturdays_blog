@@ -1,0 +1,17 @@
+version: '2.1'
+volumes:
+    data:
+        external: true
+
+services:
+    database:
+        image: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: blog
+            POSTGRES_DB: blog
+            POSTGRES_PASSWORD: blog
+        volumes:
+            - data:/var/postgresql/data
