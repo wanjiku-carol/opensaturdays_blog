@@ -3,78 +3,50 @@ HOST: http://polls.apiblueprint.org/
 
 # blog
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Blog is a simple to do app that allows creating todos and items within.
 
-## Questions Collection [/questions]
+## Questions Collection [/todo]
 
-### List All Questions [GET]
+### List All Todos [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+        {
+            "status": "success",
+                "data": [
+                {
+                    "name": "Sing",
+                    "date_created": "2018-05-19 10:32:51.134777"
+                },
+                {
+                    "name": "Dance",
+                    "date_created": "date_created": "2018-06-20 17:47:49.040776"
+                }
+            ]
+        }
 
-### Create a New Question [POST]
+### Create a New Todo [POST]
 
-You may create your own question using this action. It takes a JSON
+You may create a new todo using this action. It takes a JSON
 object containing a question and a collection of answers in the
 form of choices.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "name": "Mountain Climbing"
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
-
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "status": "success",
+                "data" :{
+                    "date_created": "2018-06-20 17:47:49.040776",
+                    "name": "dancing"
+                }
             }
